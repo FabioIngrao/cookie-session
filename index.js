@@ -62,8 +62,12 @@ function cookieSession (options) {
       keys: keys
     })
     var sess
-    opts.domain = req.get('host')
-    // to pass to Session()
+    if (req.get('host')) {
+      const host = req.get('host')
+      const hostname = host.indexOf(':') ? req.get('host').split(':')[0] : host
+      console.log('HOSTNAME ' + hostname)
+      opts.domain = hostname
+    }    // to pass to Session()
     req.sessionCookies = cookies
     req.sessionOptions = Object.create(opts)
     req.sessionKey = name
