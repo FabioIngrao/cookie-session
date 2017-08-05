@@ -62,7 +62,7 @@ function cookieSession (options) {
       keys: keys
     })
     var sess
-
+    opts.domain = req.get('host')
     // to pass to Session()
     req.sessionCookies = cookies
     req.sessionOptions = Object.create(opts)
